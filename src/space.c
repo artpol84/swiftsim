@@ -3939,6 +3939,9 @@ void space_synchronize_particle_positions_mapper(void *map_data, int nr_gparts,
     if (gp->type == swift_type_dark_matter)
       continue;
 
+    else if (gp->type == swift_type_dark_matter_background)
+      continue;
+
     else if (gp->type == swift_type_gas) {
 
       /* Get it's gassy friend */
@@ -3975,6 +3978,10 @@ void space_synchronize_particle_positions_mapper(void *map_data, int nr_gparts,
       bp->x[0] = gp->x[0];
       bp->x[1] = gp->x[1];
       bp->x[2] = gp->x[2];
+    }
+
+    else {
+      error("Invalid type!");
     }
   }
 }
