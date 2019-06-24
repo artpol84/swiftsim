@@ -199,8 +199,8 @@ INLINE static void hydro_write_particles(const struct part* parts,
       convert_P, "Co-moving pressures of the particles");
 
   list[9] = io_make_output_field_convert_part(
-      "Potential", FLOAT, 1, UNIT_CONV_POTENTIAL, 1.f, parts, xparts,
-      convert_part_potential, "Gravitational potential of the particles");
+      "Entropies", FLOAT, 1, UNIT_CONV_ENTROPY_PER_UNIT_MASS, 0.f, parts,
+      xparts, convert_S, "Co-moving Entropies per unit mass of the particles");
 }
 
 /**
