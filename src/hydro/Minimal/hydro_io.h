@@ -195,8 +195,8 @@ INLINE static void hydro_write_particles(const struct part* parts,
       xparts, convert_S, "Co-moving Entropies per unit mass of the particles");
 
   list[8] = io_make_output_field_convert_part(
-      "Pressures", FLOAT, 1, UNIT_CONV_PRESSURE, 3 * hydro_gamma, parts, xparts,
-      convert_P, "Co-moving pressures of the particles");
+      "Pressures", FLOAT, 1, UNIT_CONV_PRESSURE, 3.f * hydro_gamma, parts,
+      xparts, convert_P, "Co-moving pressures of the particles");
 
   list[9] = io_make_output_field_convert_part(
       "Entropies", FLOAT, 1, UNIT_CONV_ENTROPY_PER_UNIT_MASS, 0.f, parts,
