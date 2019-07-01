@@ -189,13 +189,13 @@ INLINE static void hydro_write_particles(const struct part* parts,
       "Entropies", FLOAT, 1, UNIT_CONV_ENTROPY_PER_UNIT_MASS, 0.f, parts,
       xparts, convert_S, "Entropies per unit mass of the particles");
   list[8] = io_make_output_field(
-      "MaterialIDs", INT, 1, UNIT_CONV_NO_UNITS, parts, mat_id,
+      "MaterialIDs", INT, 1, UNIT_CONV_NO_UNITS, 0.f, parts, mat_id,
       "Material IDs of the particles");
   list[9] = io_make_output_field_convert_part(
       "Pressures", FLOAT, 1, UNIT_CONV_PRESSURE, 3.f * hydro_gamma, parts,
       xparts, convert_P, "Pressures of the particles");
   list[10] = io_make_output_field_convert_part(
-      "Potentials", FLOAT, 1, UNIT_CONV_POTENTIAL, parts, xparts, 
+      "Potentials", FLOAT, 1, UNIT_CONV_POTENTIAL, 0.f, parts, xparts, 
       convert_part_potential, "Gravitational potentials of the particles");
 }
 
