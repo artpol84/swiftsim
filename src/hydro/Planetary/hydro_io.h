@@ -71,7 +71,7 @@ INLINE static void hydro_read_particles(struct part* parts,
                                 UNIT_CONV_ACCELERATION, parts, a_hydro);
   list[7] = io_make_input_field("Density", FLOAT, 1, OPTIONAL,
                                 UNIT_CONV_DENSITY, parts, rho);
-  list[8] = io_make_input_field("MaterialID", INT, 1, COMPULSORY,
+  list[8] = io_make_input_field("MaterialIDs", INT, 1, COMPULSORY,
                                 UNIT_CONV_NO_UNITS, parts, mat_id);
 }
 
@@ -165,38 +165,38 @@ INLINE static void hydro_write_particles(const struct part* parts,
   /* List what we want to write */
   list[0] = io_make_output_field_convert_part(
       "Coordinates", DOUBLE, 3, UNIT_CONV_LENGTH, 1.f, parts, xparts,
-      convert_part_pos, "Co-moving position of the particles");
+      convert_part_pos, "Positions of the particles");
   list[1] = io_make_output_field_convert_part(
       "Velocities", FLOAT, 3, UNIT_CONV_SPEED, 0.f, parts, xparts,
-      convert_part_vel,
-      "Peculiar velocities of the stars. This is a * dx/dt where x is the "
-      "co-moving position of the particles.");
-  list[2] = io_make_output_field("Masses", FLOAT, 1, UNIT_CONV_MASS, 0.f, parts,
-                                 mass, "Masses of the particles");
+      convert_part_vel, "Velocities of the particles.");
+  list[2] = io_make_output_field(
+      "Masses", FLOAT, 1, UNIT_CONV_MASS, 0.f, parts, mass, 
+      "Masses of the particles");
   list[3] = io_make_output_field(
       "SmoothingLengths", FLOAT, 1, UNIT_CONV_LENGTH, 1.f, parts, h,
-      "Co-moving smoothing lengths (FWHM of the kernel) of the particles");
+      "Smoothing lengths (FWHM of the kernel) of the particles");
   list[4] = io_make_output_field(
       "InternalEnergies", FLOAT, 1, UNIT_CONV_ENERGY_PER_UNIT_MASS,
       3. * hydro_gamma_minus_one, parts, u,
-      "Co-moving thermal energies per unit mass of the particles");
-  list[5] =
-      io_make_output_field("ParticleIDs", ULONGLONG, 1, UNIT_CONV_NO_UNITS, 0.f,
-                           parts, id, "Unique ID of the particles");
-  list[6] = io_make_output_field("Densities", FLOAT, 1, UNIT_CONV_DENSITY, -3.f,
-                                 parts, rho,
-                                 "Co-moving mass densities of the particles");
+      "Thermal energies per unit mass of the particles");
+  list[5] = io_make_output_field(
+      "ParticleIDs", ULONGLONG, 1, UNIT_CONV_NO_UNITS, 0.f, parts, id, 
+      "Unique IDs of the particles");
+  list[6] = io_make_output_field(
+      "Densities", FLOAT, 1, UNIT_CONV_DENSITY, -3.f, parts, rho,
+      "Densities of the particles");
   list[7] = io_make_output_field_convert_part(
       "Entropies", FLOAT, 1, UNIT_CONV_ENTROPY_PER_UNIT_MASS, 0.f, parts,
-      xparts, convert_S, "Co-moving Entropies per unit mass of the particles");
-  list[8] = io_make_output_field("MaterialID", INT, 1, UNIT_CONV_NO_UNITS,
-                                 parts, mat_id);
+      xparts, convert_S, "Entropies per unit mass of the particles");
+  list[8] = io_make_output_field(
+      "MaterialIDs", INT, 1, UNIT_CONV_NO_UNITS, parts, mat_id,
+      "Material IDs of the particles");
   list[9] = io_make_output_field_convert_part(
       "Pressures", FLOAT, 1, UNIT_CONV_PRESSURE, 3.f * hydro_gamma, parts,
-      xparts, convert_P, "Co-moving pressures of the particles");
-  list[10] = io_make_output_field_convert_part("Potential", FLOAT, 1,
-                                               UNIT_CONV_POTENTIAL, parts,
-                                               xparts, convert_part_potential);
+      xparts, convert_P, "Pressures of the particles");
+  list[10] = io_make_output_field_convert_part(
+      "Potentials", FLOAT, 1, UNIT_CONV_POTENTIAL, parts, xparts, 
+      convert_part_potential, "Gravitational potentials of the particles");
 }
 
 /**
