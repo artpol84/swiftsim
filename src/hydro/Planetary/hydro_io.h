@@ -168,7 +168,7 @@ INLINE static void hydro_write_particles(const struct part* parts,
       convert_part_pos, "Positions of the particles");
   list[1] = io_make_output_field_convert_part(
       "Velocities", FLOAT, 3, UNIT_CONV_SPEED, 0.f, parts, xparts,
-      convert_part_vel, "Velocities of the particles.");
+      convert_part_vel, "Velocities of the particles");
   list[2] = io_make_output_field(
       "Masses", FLOAT, 1, UNIT_CONV_MASS, 0.f, parts, mass, 
       "Masses of the particles");

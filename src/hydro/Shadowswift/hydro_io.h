@@ -140,7 +140,7 @@ INLINE static void hydro_write_particles(const struct part* parts,
   /* List what we want to write */
   list[0] = io_make_output_field_convert_part(
       "Coordinates", DOUBLE, 3, UNIT_CONV_LENGTH, 1.f, parts, xparts,
-      convert_part_pos, "Co-moving position of the particles");
+      convert_part_pos, "Co-moving positions of the particles");
 
   list[1] = io_make_output_field("Velocities", FLOAT, 3, UNIT_CONV_SPEED, parts,
                                  primitives.v);
@@ -158,11 +158,11 @@ INLINE static void hydro_write_particles(const struct part* parts,
 
   list[5] =
       io_make_output_field("ParticleIDs", ULONGLONG, 1, UNIT_CONV_NO_UNITS, 0.f,
-                           parts, id, "Unique ID of the particles");
+                           parts, id, "Unique IDs of the particles");
 
   list[6] = io_make_output_field("Accelerations", FLOAT, 3,
                                  UNIT_CONV_ACCELERATION, parts, 1.f, a_hydro,
-                                 "Accelerations of the particles (does not "
+                                 "Accelerations of the particles(does not "
                                  "work in non-cosmological runs).");
 
   list[7] = io_make_output_field("Densities", FLOAT, 1, UNIT_CONV_DENSITY,
@@ -175,7 +175,7 @@ INLINE static void hydro_write_particles(const struct part* parts,
 
   list[9] = io_make_output_field("GradDensities", FLOAT, 3, UNIT_CONV_DENSITY,
                                  parts, 1.f, primitives.gradients.rho,
-                                 "Gradient densities of the particles.");
+                                 "Gradient densities of the particles");
 
   list[10] = io_make_output_field_convert_part(
       "Entropies", FLOAT, 1, UNIT_CONV_ENTROPY, 1.f, parts, xparts, convert_A,
@@ -183,7 +183,7 @@ INLINE static void hydro_write_particles(const struct part* parts,
 
   list[11] = io_make_output_field("Pressures", FLOAT, 1, UNIT_CONV_PRESSURE,
                                   3.f * hydro_gamma, parts, primitives.P,
-                                  "Co-moving pressures of the particles.");
+                                  "Co-moving pressures of the particles");
 
   list[12] = io_make_output_field_convert_part(
       "TotalEnergies", FLOAT, 1, UNIT_CONV_ENERGY, 3.f * hydro_gamma_minus_one,
